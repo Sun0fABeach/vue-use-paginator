@@ -1,5 +1,5 @@
 {
-  "name": "vue-use-pagination",
+  "name": "vue-use-paginator",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
