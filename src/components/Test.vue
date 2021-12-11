@@ -77,7 +77,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import usePagination from '../usePagination'
+import usePagination from '../usePaginator'
 
 export default defineComponent({
   setup() {

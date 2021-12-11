@@ -3,13 +3,25 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview"
+    "build": "npm run build:declarations && vite build",
+    "build:declarations": "tsc src/usePaginator.ts --declaration --emitDeclarationOnly --outDir dist"
+  },
+  "main": "./dist/vue-use-paginator.umd.js",
+  "module": "./dist/vue-use-paginator.es.js",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/vue-use-paginator.es.js",
+      "require": "./dist/vue-use-paginator.umd.js"
+    }
   },
   "dependencies": {
     "vue": "^3.2.16"
   },
   "devDependencies": {
+    "@types/node": "^16.11.11",
     "@vitejs/plugin-vue": "^1.9.3",
     "typescript": "^4.4.3",
     "vite": "^2.6.4",
