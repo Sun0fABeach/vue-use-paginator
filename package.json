@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:declarations && vite build",
+    "build": "npm run build:bundle && npm run build:declarations",
+    "build:bundle": "vite build",
     "build:declarations": "tsc src/usePaginator.ts --declaration --emitDeclarationOnly --outDir dist"
   },
   "main": "./dist/vue-use-paginator.umd.js",
