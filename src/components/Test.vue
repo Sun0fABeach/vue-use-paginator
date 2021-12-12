@@ -49,7 +49,7 @@
     </ul>
 
     <label>styled:</label>
-    <ul class="paginator">
+    <ol class="paginator">
       <li class="control" :class="!hasPrev && 'disabled'" @click="goStart">
         {{ '<<' }}
       </li>
@@ -70,19 +70,19 @@
       <li class="control" :class="!hasNext && 'disabled'" @click="goEnd">
         {{ '>>' }}
       </li>
-    </ul>
+    </ol>
 
   </form>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import usePagination from '../usePaginator'
+import usePaginator from '../usePaginator'
 
 export default defineComponent({
   setup() {
     const numButtons = ref(2)
-    const pagination = usePagination(numButtons)
+    const pagination = usePaginator(numButtons)
     return {
       ...pagination,
       numButtons,
@@ -92,12 +92,12 @@ export default defineComponent({
 </script>
 
 <style scoped>
-ul.paginator {
+ol.paginator {
   display: flex;
   list-style: none;
   user-select: none;
 }
-ul.paginator li {
+ol.paginator li {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,21 +106,21 @@ ul.paginator li {
   height: 50px;
   border: 1px solid black;
 }
-ul.paginator li:not(.current-page):hover {
+ol.paginator li:not(.current-page):hover {
   font-weight: bold;
   border-width: 2px;
   cursor: pointer;
 }
-ul.paginator li.current-page {
+ol.paginator li.current-page {
   color: blue;
   border-color: blue;
 }
-ul.paginator li.control {
+ol.paginator li.control {
   border: none;
   font-weight: 900;
   cursor: pointer;
 }
-ul.paginator li.control.disabled {
+ol.paginator li.control.disabled {
   opacity: 0.5;
   pointer-events: none;
 }
