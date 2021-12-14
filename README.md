@@ -62,7 +62,7 @@ When displaying paginator buttons, you often don't have enough slots for each pa
 
 Here is a minimal example how you could write your paginator markup.
 
-```html
+```vue
 <ol>
   <li :class="!hasPrev && 'disabled'" @click="goStart">
     {{ '<<' }}
@@ -91,13 +91,13 @@ Notice how certain classes and texts are set based on the values of `hasPrev`, `
 
 ### API integration
 
-This library doesn't make any assumptions about whether you paginate in the frontend or call a paginated endpoint. If you do it in the frontend, just assign the length of your collection to  `numItems` and use the values from `slice` to slice out the items for your current page. If you call a paginated endpoint, it needs to tell you the total number of items in order to set `numItems`. You can then use `slice` or `page`/`pageSize` for your request payload to fetch the desired page.
+This library doesn't make any assumptions about whether you paginate in the frontend or call a paginated endpoint. If you do it in the frontend, just assign the length of your collection to  `numItems` and use the values from `slice` to slice out the items for your current page. If you call a paginated endpoint, it needs to tell you the total number of items in order to set `numItems`. You can then use `slice` or `page`/`pageSize` in your request to fetch the desired page.
 
 ### Types
 
 #### Definitions
 
-```ts
+```typescript
 interface IPagination {
     page: Ref<number>
     pageSize: Ref<number>
@@ -133,6 +133,6 @@ type IPaginatorButton = IPageButton | IEllipsisButton
 
 #### Importing
 
-```ts
+```typescript
 import { IPagination, IPaginatorButton } from 'vue-use-paginator'
 ```
