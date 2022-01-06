@@ -76,17 +76,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import usePaginator from '../usePaginator'
 
 export default defineComponent({
   setup() {
-    const numButtons = ref(2)
-    const pagination = usePaginator(numButtons)
-    return {
-      ...pagination,
-      numButtons,
-    }
+    return usePaginator({ pageSize: 10 })
   }
 })
 </script>

@@ -1,9 +1,15 @@
 import { ref, computed, watch, Ref, ComputedRef } from 'vue'
 
+export interface IOptions {
+  pageSize?: number,
+  numButtons?: number,
+}
+
 export interface IPagination {
   page: Ref<number>
   pageSize: Ref<number>
   numItems: Ref<number>
+  numButtons: Ref<number>
   numPages: ComputedRef<number>
   slice: ComputedRef<[number, number]>
   buttons: ComputedRef<IPaginatorButton[]>
@@ -31,9 +37,17 @@ export interface IEllipsisButton extends IButton {
 
 export type IPaginatorButton = IPageButton | IEllipsisButton
 
+const defaultOptions: Required<IOptions> = {
+  pageSize: 5,
+  numButtons: 5,
+};
 
-export default (numButtons: Ref<number> = ref(5)): IPagination => {
-  const pageSize = ref(5)
+
+export default (userOptions: IOptions): IPagination => {
+  const options: Required<IOptions> = { ...defaultOptions, ...userOptions }
+
+  const pageSize = ref(options.pageSize)
+  const numButtons = ref(options.numButtons)
   const numItems = ref(0)
 
   const _page = ref(1)
@@ -96,6 +110,7 @@ export default (numButtons: Ref<number> = ref(5)): IPagination => {
     page,
     pageSize,
     numItems,
+    numButtons,
     numPages,
     slice,
     hasPrev,

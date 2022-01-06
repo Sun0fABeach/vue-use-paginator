@@ -12,13 +12,14 @@ $ npm install vue-use-paginator
 
 ```html
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import usePaginator from 'vue-use-paginator'
 
 export default defineComponent({
   setup() {
-    const numButtons = ref(2)
-    return usePaginator(numButtons)
+    const pageSize = 10
+    const numButtons = 7
+    return usePaginator({ pageSize, numButtons })
   }
 })
 </script>
@@ -28,13 +29,14 @@ export default defineComponent({
 
 ### Hook API
 
-Function `usePaginator` expects the number of pagination buttons you want to display and returns an object of type `IPagination` which contains the following reactive data plus some convenience functions.
+Function `usePaginator` expects an object of type `IOptions`, containing the page size and number of pagination buttons to display (both are optional, defaults are `{ pageSize: 5, numButtons: 5 }`). It returns an object of type `IPagination` which contains the following reactive data plus some convenience functions.
 
 | Name           | Type                               | Description
 | -------------- | ---------------------------------- | -----------
 | `page`         | `Ref<number>`                     | Current active page (initial value: 1)
-| `pageSize`     | `Ref<number>`                     | Size of each page (initial value: 5)
+| `pageSize`     | `Ref<number>`                     | Size of each page
 | `numItems`     | `Ref<number>`                     | Total number of items to paginate (initial value: 0)
+| `numButtons`   | `Ref<number>`                     | Number of paginator buttons to display
 | `numPages`     | `ComputedRef<number>`             | Total number of pages
 | `slice`        | `ComputedRef<[number, number]>`    | Tuple containing start and end index delimiting the currently active page (0 based, end index is exclusive). For example, given you are on page 2, `pageSize` is 10 and `numItems` is greater than or equal to 20, `slice` will be `[10, 20]`.
 | `buttons`      | `ComputedRef<IPaginatorButton[]>` | Array of objects usable for displaying paginator buttons (details below)
@@ -45,7 +47,7 @@ Function `usePaginator` expects the number of pagination buttons you want to dis
 | `goStart`      | `() => 1`                          | Go to first page
 | `goEnd`        | `() => number`                     | Go to last page
 
-* `page`, `pageSize`, `numItems`, as well as `numButtons` (used to call `usePaginator`) are writable refs that will cause the other reactive properties to adjust when changed. Once you know how many items to paginate, you need to set `numItems` at least.
+* `page`, `pageSize`, `numItems`, as well as `numButtons` are writable refs that will cause the other reactive properties to adjust when changed. Once you know how many items to paginate, you need to set `numItems` at least.
 * You can move to another page by either calling `goPrev`, `goNext`, `goStart`, `goEnd`, or by assigning to `page` directly. Note that assigning a value outside of 1 and `numPages` will be ignored.
 
 ### Paginator buttons
@@ -98,33 +100,40 @@ This library doesn't make any assumptions about whether you paginate in the fron
 #### Definitions
 
 ```typescript
+
+export interface IOptions {
+  pageSize?: number,
+  numButtons?: number,
+}
+
 interface IPagination {
-    page: Ref<number>
-    pageSize: Ref<number>
-    numItems: Ref<number>
-    numPages: ComputedRef<number>
-    slice: ComputedRef<[number, number]>
-    buttons: ComputedRef<IPaginatorButton[]>
-    hasPrev: ComputedRef<boolean>
-    hasNext: ComputedRef<boolean>
-    goPrev: () => number
-    goNext: () => number
-    goStart: () => 1
-    goEnd: () => number
+  page: Ref<number>
+  pageSize: Ref<number>
+  numItems: Ref<number>
+  numButtons: Ref<number>
+  numPages: ComputedRef<number>
+  slice: ComputedRef<[number, number]>
+  buttons: ComputedRef<IPaginatorButton[]>
+  hasPrev: ComputedRef<boolean>
+  hasNext: ComputedRef<boolean>
+  goPrev: () => number
+  goNext: () => number
+  goStart: () => 1
+  goEnd: () => number
 }
 
 interface IButton {
-    page: number
+  page: number
 }
 
 interface IPageButton extends IButton {
-    active: boolean
-    ellipsis: false
+  active: boolean
+  ellipsis: false
 }
 
 interface IEllipsisButton extends IButton {
-    active: false
-    ellipsis: true
+  active: false
+  ellipsis: true
 }
 
 type IPaginatorButton = IPageButton | IEllipsisButton
@@ -134,5 +143,5 @@ type IPaginatorButton = IPageButton | IEllipsisButton
 #### Importing
 
 ```typescript
-import { IPagination, IPaginatorButton } from 'vue-use-paginator'
+import { IOptions, IPagination, IPaginatorButton } from 'vue-use-paginator'
 ```
