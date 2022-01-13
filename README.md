@@ -2,6 +2,11 @@
 
 Vue 3 composition API hook function to reactively paginate data and arrange paginator buttons. Completely renderless.
 
+## Demo
+
+* [Live demo](https://demo-vue-use-paginator.netlify.app/)
+* [Demo code](https://github.com/Sun0fABeach/demo-vue-use-paginator/blob/master/src/components/Demo.vue)
+
 ## Installation
 
 ```shell
