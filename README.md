@@ -114,8 +114,8 @@ This library doesn't make any assumptions about whether you paginate in the fron
 export interface IOptions {
   page?: number
   pageSize?: number
-  numButtons?: number
   numItems?: number
+  numButtons?: number
 }
 
 interface IPagination {
