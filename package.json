@@ -1,6 +1,6 @@
 {
   "name": "vue-use-paginator",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "Vue use-hook for renderless pagination logic",
   "author": "Markus Appel <markospoparkos@gmail.com>",
   "scripts": {
