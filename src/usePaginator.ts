@@ -1,8 +1,10 @@
 import { ref, computed, watch, Ref, ComputedRef } from 'vue'
 
 export interface IOptions {
-  pageSize?: number,
-  numButtons?: number,
+  page?: number
+  pageSize?: number
+  numItems?: number
+  numButtons?: number
 }
 
 export interface IPagination {
@@ -38,7 +40,9 @@ export interface IEllipsisButton extends IButton {
 export type IPaginatorButton = IPageButton | IEllipsisButton
 
 const defaultOptions: Required<IOptions> = {
+  page: 1,
   pageSize: 5,
+  numItems: 0,
   numButtons: 5,
 };
 
@@ -46,11 +50,11 @@ const defaultOptions: Required<IOptions> = {
 export default (userOptions: IOptions): IPagination => {
   const options: Required<IOptions> = { ...defaultOptions, ...userOptions }
 
+  const _page = ref(options.page)
   const pageSize = ref(options.pageSize)
+  const numItems = ref(options.numItems)
   const numButtons = ref(options.numButtons)
-  const numItems = ref(0)
 
-  const _page = ref(1)
   const page = computed({
     get: () => _page.value,
     set: val => {

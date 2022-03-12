@@ -22,9 +22,11 @@ import usePaginator from 'vue-use-paginator'
 
 export default defineComponent({
   setup() {
-    const pageSize = 10
-    const numButtons = 7
-    return usePaginator({ pageSize, numButtons })
+    return usePaginator({
+      pageSize: 10,
+      numItems: 70,
+      numButtons: 5,
+    })
   }
 })
 </script>
@@ -34,14 +36,17 @@ export default defineComponent({
 
 ### Hook API
 
-Function `usePaginator` expects an object of type `IOptions`, containing the page size and number of pagination buttons to display (both are optional, defaults are `{ pageSize: 5, numButtons: 5 }`). It returns an object of type `IPagination` which contains the following reactive data plus some convenience functions.
+Function `usePaginator` returns an object of type `IPagination` which contains the following
+reactive data plus some convenience functions. You can initialize `page`, `pageSize`, `numItems` and
+`numButtons` by passing an object of type `IOptions`. Otherwise, default initial values will be
+used.
 
 | Name           | Type                               | Description
 | -------------- | ---------------------------------- | -----------
-| `page`         | `Ref<number>`                     | Current active page (initial value: 1)
-| `pageSize`     | `Ref<number>`                     | Size of each page
-| `numItems`     | `Ref<number>`                     | Total number of items to paginate (initial value: 0)
-| `numButtons`   | `Ref<number>`                     | Number of paginator buttons to display
+| `page`         | `Ref<number>`                     | Current active page (default initial value: 1)
+| `pageSize`     | `Ref<number>`                     | Size of each page (default initial value: 5)
+| `numItems`     | `Ref<number>`                     | Total number of items to paginate (default initial value: 0)
+| `numButtons`   | `Ref<number>`                     | Number of paginator buttons to display (default initial value: 5)
 | `numPages`     | `ComputedRef<number>`             | Total number of pages
 | `slice`        | `ComputedRef<[number, number]>`    | Tuple containing start and end index delimiting the currently active page (0 based, end index is exclusive). For example, given you are on page 2, `pageSize` is 10 and `numItems` is greater than or equal to 20, `slice` will be `[10, 20]`.
 | `buttons`      | `ComputedRef<IPaginatorButton[]>` | Array of objects usable for displaying paginator buttons (details below)
@@ -107,8 +112,10 @@ This library doesn't make any assumptions about whether you paginate in the fron
 ```typescript
 
 export interface IOptions {
-  pageSize?: number,
-  numButtons?: number,
+  page?: number
+  pageSize?: number
+  numButtons?: number
+  numItems?: number
 }
 
 interface IPagination {

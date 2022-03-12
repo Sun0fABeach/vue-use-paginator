@@ -81,7 +81,11 @@ import usePaginator from '../usePaginator'
 
 export default defineComponent({
   setup() {
-    return usePaginator({ pageSize: 10 })
+    return usePaginator({
+      pageSize: 10,
+      numItems: 70,
+      numButtons: 5,
+    })
   }
 })
 </script>
