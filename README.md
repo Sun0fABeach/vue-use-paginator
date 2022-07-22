@@ -112,14 +112,23 @@ Notice how certain classes and texts are set based on the values of `hasPrev`, `
 
 ### API integration
 
-This library doesn't make any assumptions about whether you paginate in the frontend or call a paginated endpoint. If you do it in the frontend, just assign the length of your collection to  `numItems` and use the values from `slice` to slice out the items for your current page. If you call a paginated endpoint, it needs to tell you the total number of items in order to set `numItems`. You can then use `slice` or `page`/`pageSize` in your request to fetch the desired page.
+This library doesn't make any assumptions about whether you paginate in the frontend or call a paginated endpoint.
+
+If you paginate in the frontend, just assign the length of your collection to  `numItems` and use the values from `slice` to slice out the items to display for your current page.
+
+If you call a paginated endpoint, it needs to tell you the total number of items in order to set `numItems`. You can then use `slice` or `page`/`pageSize` to fetch page content. You will normally want to set up a watcher in order to fetch a new page when `page` or `pageSize` changes.
+
+```typescript
+watch([page, pageSize], ([newPage, newPageSize]) => {
+  fetchPage(newPage, newPageSize);
+})
+```
 
 ### Types
 
 #### Definitions
 
 ```typescript
-
 interface IOptions {
   page?: number | Ref<number>
   pageSize?: number | Ref<number>
@@ -158,7 +167,6 @@ interface IEllipsisButton extends IButton {
 }
 
 type IPaginatorButton = IPageButton | IEllipsisButton
-
 ```
 
 #### Importing Types

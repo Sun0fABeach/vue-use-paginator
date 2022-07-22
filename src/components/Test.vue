@@ -76,6 +76,7 @@
 </template>
 
 <script setup lang="ts">
+import { watch } from 'vue'
 import usePaginator from '../usePaginator'
 
 const {
@@ -96,6 +97,10 @@ const {
   pageSize: 10,
   numItems: 70,
   numButtons: 5,
+})
+
+watch([page, pageSize], ([newPage, newPageSize]) => {
+  console.log({ newPage, newPageSize });
 })
 </script>
 
