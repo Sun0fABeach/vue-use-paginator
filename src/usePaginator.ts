@@ -1,10 +1,13 @@
-import { ref, computed, watch, Ref, ComputedRef } from 'vue'
+import { ref, computed, watch } from 'vue'
+import type { Ref, ComputedRef } from 'vue'
+
+type MaybeRef<T> = T | Ref<T>
 
 export interface IOptions {
-  page?: number
-  pageSize?: number
-  numItems?: number
-  numButtons?: number
+  page?: MaybeRef<number>
+  pageSize?: MaybeRef<number>
+  numItems?: MaybeRef<number>
+  numButtons?: MaybeRef<number>
 }
 
 export interface IPagination {

@@ -120,11 +120,11 @@ This library doesn't make any assumptions about whether you paginate in the fron
 
 ```typescript
 
-export interface IOptions {
-  page?: number
-  pageSize?: number
-  numItems?: number
-  numButtons?: number
+interface IOptions {
+  page?: number | Ref<number>
+  pageSize?: number | Ref<number>
+  numItems?: number | Ref<number>
+  numButtons?: number | Ref<number>
 }
 
 interface IPagination {
@@ -161,7 +161,7 @@ type IPaginatorButton = IPageButton | IEllipsisButton
 
 ```
 
-#### Importing
+#### Importing Types
 
 ```typescript
 import { IOptions, IPagination, IPaginatorButton } from 'vue-use-paginator'
