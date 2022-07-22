@@ -17,7 +17,7 @@ $ npm install vue-use-paginator
 
 ```html
 <script setup lang="ts">
-import usePaginator from '../usePaginator'
+import usePaginator from 'vue-use-paginator'
 
 const {
   page,
@@ -45,10 +45,7 @@ const {
 
 ### Hook API
 
-Function `usePaginator` returns an object of type `IPagination` which contains the following
-reactive data plus some convenience functions. You can initialize `page`, `pageSize`, `numItems` and
-`numButtons` by passing an object of type `IOptions`. Otherwise, default initial values will be
-used.
+Function `usePaginator` returns an object of type [`IPagination`](<#user-content-definitions> "IPagination") which contains the following reactive data plus some convenience functions. You can initialize `page`, `pageSize`, `numItems` and `numButtons` by passing an object of type [`IOptions`](<#user-content-definitions> "IOptions"). Otherwise, default initial values will be used.
 
 | Name           | Type                               | Description
 | -------------- | ---------------------------------- | -----------
@@ -71,7 +68,7 @@ used.
 
 ### Paginator buttons
 
-When displaying paginator buttons, you often don't have enough slots for each page and therefore need to use a placeholder like '...'. Calculating the positions of these placeholders is not trivial. Luckily, `buttons` is an array of `IPaginatorButton` where each item contains the following properties to help you out.
+When displaying paginator buttons, you often don't have enough slots for each page and therefore need to use a placeholder like '...'. Calculating the positions of these placeholders is not trivial. Luckily, `buttons` is an array of [`IPaginatorButton`](<#user-content-definitions> "IPaginatorButton") where each item contains the following properties to help you out.
 
 | Name       | Type       | Description
 | ---------- | ---------- | -----------
@@ -116,7 +113,7 @@ This library doesn't make any assumptions about whether you paginate in the fron
 
 If you paginate in the frontend, just assign the length of your collection to  `numItems` and use the values from `slice` to slice out the items to display for your current page.
 
-If you call a paginated endpoint, it needs to tell you the total number of items in order to set `numItems`. You can then use `slice` or `page`/`pageSize` to fetch page content. You will normally want to set up a watcher in order to fetch a new page when `page` or `pageSize` changes.
+If you call a paginated endpoint, it needs to tell you the total number of items in order to set `numItems`. You can then use `slice` or `page`/`pageSize` to fetch a page. You will normally want to set up a watcher in order to fetch a new page when `page` or `pageSize` changes.
 
 ```typescript
 watch([page, pageSize], ([newPage, newPageSize]) => {

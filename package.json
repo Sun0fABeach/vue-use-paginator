@@ -8,7 +8,7 @@
     "build": "npm run build:bundle && npm run build:declarations",
     "build:bundle": "vite build",
     "build:declarations": "vue-tsc src/usePaginator.ts --declaration --emitDeclarationOnly --outDir dist",
-    "publish": "npm run build && npm publish"
+    "publishPackage": "npm run build && npm publish"
   },
   "type": "module",
   "main": "./dist/vue-use-paginator.umd.js",
