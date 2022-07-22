@@ -16,18 +16,27 @@ $ npm install vue-use-paginator
 ## Basic Setup
 
 ```html
-<script lang="ts">
-import { defineComponent } from 'vue'
-import usePaginator from 'vue-use-paginator'
+<script setup lang="ts">
+import usePaginator from '../usePaginator'
 
-export default defineComponent({
-  setup() {
-    return usePaginator({
-      pageSize: 10,
-      numItems: 70,
-      numButtons: 5,
-    })
-  }
+const {
+  page,
+  pageSize,
+  numPages,
+  numItems,
+  numButtons,
+  slice,
+  buttons,
+  hasPrev,
+  hasNext,
+  goStart,
+  goPrev,
+  goNext,
+  goEnd,
+} = usePaginator({
+  pageSize: 10,
+  numItems: 70,
+  numButtons: 5,
 })
 </script>
 ```
