@@ -82,10 +82,10 @@ Here is a minimal example how you could write your paginator markup.
 
 ```vue
 <ol>
-  <li :class="!hasPrev && 'disabled'" @click="goStart">
+  <li :class="{ disabled: !hasPrev }" @click="goStart">
     {{ '<<' }}
   </li>
-  <li :class="!hasPrev && 'disabled'" @click="goPrev">
+  <li :class="{ disabled: !hasPrev }" @click="goPrev">
     {{ '<' }}
   </li>
   <li
@@ -96,10 +96,10 @@ Here is a minimal example how you could write your paginator markup.
   >
     {{ button.ellipsis ? '...' : button.page }}
   </li>
-  <li :class="!hasNext && 'disabled'" @click="goNext">
+  <li :class="{ disabled: !hasNext }" @click="goNext">
     {{ '>' }}
   </li>
-  <li :class="!hasNext && 'disabled'" @click="goEnd">
+  <li :class="{ disabled: !hasNext }" @click="goEnd">
     {{ '>>' }}
   </li>
 </ol>

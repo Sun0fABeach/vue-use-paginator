@@ -50,10 +50,10 @@
 
     <label>styled:</label>
     <ol class="paginator">
-      <li class="control" :class="!hasPrev && 'disabled'" @click="goStart">
+      <li class="control" :class="{ disabled: !hasPrev }" @click="goStart">
         {{ '<<' }}
       </li>
-      <li class="control" :class="!hasPrev && 'disabled'" @click="goPrev">
+      <li class="control" :class="{ disabled: !hasPrev }" @click="goPrev">
         {{ '<' }}
       </li>
       <li
@@ -64,10 +64,10 @@
       >
         {{ button.ellipsis ? '...' : button.page }}
       </li>
-      <li class="control" :class="!hasNext && 'disabled'" @click="goNext">
+      <li class="control" :class="{ disabled: !hasNext }" @click="goNext">
         {{ '>' }}
       </li>
-      <li class="control" :class="!hasNext && 'disabled'" @click="goEnd">
+      <li class="control" :class="{ disabled: !hasNext }" @click="goEnd">
         {{ '>>' }}
       </li>
     </ol>
