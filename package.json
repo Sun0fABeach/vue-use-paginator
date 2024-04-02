@@ -19,8 +19,14 @@
   "types": "dist/usePaginator.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/vue-use-paginator.es.js",
-      "require": "./dist/vue-use-paginator.umd.js"
+      "import": {
+        "types": "./dist/usePaginator.d.ts",
+        "default": "./dist/vue-use-paginator.es.js"
+      },
+      "require": {
+        "types": "./dist/usePaginator.d.ts",
+        "default": "./dist/vue-use-paginator.umd.js"
+      }
     }
   },
   "dependencies": {
