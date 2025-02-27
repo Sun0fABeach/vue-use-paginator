@@ -85,9 +85,9 @@ export default (userOptions: IOptions): IPagination => {
   const hasNext = computed(() => page.value < numPages.value)
 
   const goPrev = () => {
-    if (hasPrev.value) [
+    if (hasPrev.value) {
       page.value--
-    ]
+    }
     return page.value
   }
   const goNext = () => {
