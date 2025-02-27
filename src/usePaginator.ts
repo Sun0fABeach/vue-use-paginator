@@ -61,7 +61,11 @@ export default (userOptions: IOptions): IPagination => {
   const page = computed({
     get: () => _page.value,
     set: val => {
-      if (val > 0 && val <= numPages.value) {
+      if (val <= 0) {
+        _page.value = 1
+      } else if (val > numPages.value) {
+        _page.value = numPages.value || 1
+      } else {
         _page.value = val
       }
     }
@@ -69,7 +73,7 @@ export default (userOptions: IOptions): IPagination => {
 
   const numPages = computed(() => Math.ceil(numItems.value / pageSize.value))
 
-  watch([pageSize, numItems], () => {
+  watch(numPages, () => {
     if (page.value > numPages.value) {
       page.value = numPages.value
     }
