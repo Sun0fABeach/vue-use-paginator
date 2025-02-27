@@ -68,7 +68,7 @@ Function `usePaginator` returns an object of type [`IPagination`](<#user-content
 
 ### Paginator buttons
 
-When displaying paginator buttons, you often don't have enough slots for each page and therefore need to use a placeholder like '...'. Calculating the positions of these placeholders is not trivial. Luckily, `buttons` is an array of [`IPaginatorButton`](<#user-content-definitions> "IPaginatorButton") where each item contains the following properties to help you out.
+When displaying paginator buttons, you often don't have enough slots for each page and therefore need to use a placeholder like '...'. Calculating the positions of these placeholders is not trivial. Fortunately, `buttons` is an array of [`IPaginatorButton`](<#user-content-definitions> "IPaginatorButton") where each item contains the following properties to help you out.
 
 | Name       | Type       | Description
 | ---------- | ---------- | -----------
@@ -169,5 +169,5 @@ type IPaginatorButton = IPageButton | IEllipsisButton
 #### Importing Types
 
 ```typescript
-import { IOptions, IPagination, IPaginatorButton } from 'vue-use-paginator'
+import type { IOptions, IPagination, IPaginatorButton } from 'vue-use-paginator'
 ```
